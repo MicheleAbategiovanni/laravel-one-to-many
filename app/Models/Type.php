@@ -11,7 +11,7 @@ class Type extends Model
 
     protected $fillable = ["title"];
 
-    public function project(){
-        return $this->belongsTo(Project::class);
+    public function project() {
+        return $this->hasMany(Project::class);
     }
 }

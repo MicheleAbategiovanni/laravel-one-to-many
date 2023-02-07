@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,6 +44,8 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
+        $type = Type::all();
+
 
         if (key_exists("thumb", $data)) {
 
@@ -55,7 +58,7 @@ class ProjectController extends Controller
             "thumb" => $path ?? '',
         ]);
 
-        return redirect()->route("admin.projects.show", $project->id);
+        return redirect()->route("admin.projects.show", $project->id, compact('type'));
     }
 
     /**
@@ -79,7 +82,10 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        return view("admin.projects.edit", compact("project"));
+        $types = Type::all();
+
+
+        return view("admin.projects.edit", compact("project", "types"));
     }
 
     /**
