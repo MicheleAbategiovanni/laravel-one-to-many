@@ -64,7 +64,7 @@
 
     <p class="lead py-3"> {{ $project->description }}</p>
 
-    <p>Category: {{ $project->type['title']  }}</p>
+    <p>Category: {{ $project->type->title  }}</p>
 
 
 

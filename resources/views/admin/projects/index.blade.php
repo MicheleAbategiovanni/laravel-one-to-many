@@ -9,7 +9,7 @@
             @foreach ($projects as $project)
             <div class="col">
                 <a href="{{ route('admin.projects.show', $project->id) }}">
-                    <img src="{{$project['thumb']}}" alt="" class="img-fluid">
+                    <img src="{{ asset('storage/' . $project['thumb']) }}" alt="" class="img-fluid">
                 </a>
                 <div class="fw-small mt-2">{{$project['title']}}</div>
             </div>

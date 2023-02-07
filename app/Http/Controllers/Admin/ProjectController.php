@@ -31,7 +31,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view("admin.projects.create");
+
+        $types = Type::all();
+
+        return view("admin.projects.create", compact('types'));
     }
 
     /**
@@ -42,10 +45,15 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $data = $request->validated();
+        // $data = $request->validated();
 
-        $type = Type::all();
-
+        $data = $request->validate([
+            "title" => "required|min:10|max:255",
+            "description" => "required|string",
+            "thumb" => "required|image|max:1024",
+            "github_link" => "string|url",
+            "type_id" => "nullable|exists:types,id"
+        ]);
 
         if (key_exists("thumb", $data)) {
 
@@ -54,11 +62,12 @@ class ProjectController extends Controller
         }
 
         $project = Project::create([
-            ...$data,
-            "thumb" => $path ?? '',
-        ]);
+             ...$data,
+             "thumb" => $path ?? '',
+         ]);
 
-        return redirect()->route("admin.projects.show", $project->id, compact('type'));
+
+        return redirect()->route("admin.projects.show", $project->id);
     }
 
     /**
