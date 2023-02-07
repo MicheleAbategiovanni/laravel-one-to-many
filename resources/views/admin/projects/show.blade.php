@@ -7,7 +7,7 @@
 
         <div class="position-comic ">
             <div class="container-comics-top">
-                <div>{{$project['type']}}</div>
+                <div></div>
             </div>
             <img src="{{ asset('storage/' . $project['thumb']) }}" height="200" alt="" class="img-fluid">
 
@@ -63,6 +63,8 @@
 
 
     <p class="lead py-3"> {{ $project->description }}</p>
+
+    <p>Category: {{ $project->type->title  }}</p>
 
 
 
