@@ -52,7 +52,7 @@ class ProjectController extends Controller
 
         $project = Project::create([
             ...$data,
-            "thumb" => $path ?? ''
+            "thumb" => $path ?? '',
         ]);
 
         return redirect()->route("admin.projects.show", $project->id);

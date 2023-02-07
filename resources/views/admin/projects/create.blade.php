@@ -43,6 +43,11 @@
         'inputName' => 'github_link',
         ])
 
+        @include('components.form-input', [
+        'label' => 'Tipo',
+        'inputName' => 'type_id',
+        ])
+
         <button class="btn btn-primary" type="submit">Salva prodotto</button>
     </form>
 </div>

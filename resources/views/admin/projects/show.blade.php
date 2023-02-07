@@ -64,6 +64,8 @@
 
     <p class="lead py-3"> {{ $project->description }}</p>
 
+    <p>{{ @dump( $project->type_id)  }}</p>
+
 
 
 </div>
